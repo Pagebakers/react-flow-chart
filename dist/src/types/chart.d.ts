@@ -1,6 +1,7 @@
 import { IPosition, ISize } from './generics';
 export interface IChart {
     offset: IPosition;
+    scale: number;
     nodes: {
         [id: string]: INode;
     };

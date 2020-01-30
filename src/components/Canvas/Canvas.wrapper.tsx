@@ -11,6 +11,7 @@ export interface ICanvasWrapperProps {
     x: number
     y: number,
   }
+  scale: number
   onDragCanvas: IOnDragCanvas
   onDeleteKey: IOnDeleteKey
   onCanvasClick: IOnCanvasClick
@@ -67,6 +68,7 @@ export class CanvasWrapper extends React.Component<ICanvasWrapperProps, IState> 
       ComponentInner,
       ComponentOuter,
       position,
+      scale,
       onDragCanvas,
       children,
       onCanvasClick,
@@ -83,8 +85,9 @@ export class CanvasWrapper extends React.Component<ICanvasWrapperProps, IState> 
           <Draggable
             axis="both"
             position={position}
+            scale={scale}
             grid={[1, 1]}
-            onDrag={(event, data) => onDragCanvas({ config, event, data })}
+            onDrag={(e, data) => onDragCanvas({ config, event: e, data })}
             disabled={config.readonly}
           >
             <ComponentInner

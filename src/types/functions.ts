@@ -1,11 +1,11 @@
-import { DraggableData } from 'react-draggable'
+import { DraggableData, DraggableEvent } from 'react-draggable'
 import { INode, IPort } from './chart'
 import { IConfig } from './config'
 import { IOffset, IPosition, ISize } from './generics'
 
-export type IOnDragNode = (input: { config?: IConfig, event: MouseEvent, data: DraggableData, id: string }) => void
+export type IOnDragNode = (input: { config?: IConfig, event: DraggableEvent, data: DraggableData, id: string }) => void
 
-export type IOnDragCanvas = (input: { config?: IConfig, event: MouseEvent, data: DraggableData }) => void
+export type IOnDragCanvas = (input: { config?: IConfig, event: DraggableEvent, data: DraggableData }) => void
 
 export type IOnPortPositionChange = (input: { config?: IConfig, node: INode, port: IPort, el: HTMLDivElement, nodesEl: HTMLDivElement | IOffset }) => void
 

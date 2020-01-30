@@ -21,7 +21,7 @@ exports.onDragNode = function (_a) {
     return function (chart) {
         var nodechart = chart.nodes[id];
         if (nodechart) {
-            chart.nodes[id] = __assign({}, nodechart, { position: config && config.snapToGrid ? { x: Math.round(data.x / 20) * 20, y: Math.round(data.y / 20) * 20 } : data });
+            chart.nodes[id] = __assign({}, nodechart, { position: config && config.snapToGrid ? { x: Math.round(data.x / 20) * 20, y: Math.round(data.y / 20) * 20 } : { x: data.x, y: data.y } });
         }
         return chart;
     };
@@ -29,7 +29,7 @@ exports.onDragNode = function (_a) {
 exports.onDragCanvas = function (_a) {
     var config = _a.config, event = _a.event, data = _a.data;
     return function (chart) {
-        chart.offset = config && config.snapToGrid ? { x: Math.round(data.x / 20) * 20, y: Math.round(data.y / 20) * 20 } : data;
+        chart.offset = config && config.snapToGrid ? { x: Math.round(data.x / 20) * 20, y: Math.round(data.y / 20) * 20 } : { x: data.x, y: data.y };
         return chart;
     };
 };
@@ -189,7 +189,7 @@ exports.onCanvasDrop = function (_a) {
         var id = uuid_1.v4();
         chart.nodes[id] = {
             id: id,
-            position: config && config.snapToGrid ? { x: Math.round(position.x / 20) * 20, y: Math.round(position.y / 20) * 20 } : position,
+            position: config && config.snapToGrid ? { x: Math.round(position.x / 20) * 20, y: Math.round(position.y / 20) * 20 } : { x: position.x, y: position.y },
             orientation: data.orientation || 0,
             type: data.type,
             ports: data.ports,
