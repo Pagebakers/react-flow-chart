@@ -98,6 +98,10 @@ export const FlowChart = (props: IFlowChartProps) => {
   const portCallbacks = { onPortPositionChange, onLinkStart, onLinkMove, onLinkComplete, onLinkCancel }
 
   const nodesInView = Object.keys(nodes).filter((nodeId) => {
+    if (config.renderAllNodes) {
+      return true
+    }
+
     // TODO: define this in chart?
     const defaultNodeSize = { width: 500, height: 500 }
 

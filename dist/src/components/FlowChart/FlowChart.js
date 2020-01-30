@@ -23,6 +23,9 @@ exports.FlowChart = function (props) {
     var nodeCallbacks = { onDragNode: onDragNode, onNodeClick: onNodeClick, onNodeSizeChange: onNodeSizeChange };
     var portCallbacks = { onPortPositionChange: onPortPositionChange, onLinkStart: onLinkStart, onLinkMove: onLinkMove, onLinkComplete: onLinkComplete, onLinkCancel: onLinkCancel };
     var nodesInView = Object.keys(nodes).filter(function (nodeId) {
+        if (config.renderAllNodes) {
+            return true;
+        }
         // TODO: define this in chart?
         var defaultNodeSize = { width: 500, height: 500 };
         var _a = nodes[nodeId].position, x = _a.x, y = _a.y;
