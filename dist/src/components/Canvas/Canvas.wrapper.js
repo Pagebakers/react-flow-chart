@@ -17,6 +17,12 @@ var React = require("react");
 var react_draggable_1 = require("react-draggable");
 var __1 = require("../../");
 var CanvasContext_1 = require("./CanvasContext");
+var ScaleWrapper = function (props) {
+    var _a = props.scale, scale = _a === void 0 ? 1 : _a, width = props.width, height = props.height, children = props.children;
+    var x = (width - (width * scale)) * -1;
+    var y = (height - (height * scale)) * -1;
+    return (React.createElement("div", { style: { transform: "scale(" + scale + ") translate(" + x + ", " + y + ")" } }, children));
+};
 var CanvasWrapper = /** @class */ (function (_super) {
     __extends(CanvasWrapper, _super);
     function CanvasWrapper() {
@@ -65,9 +71,9 @@ var CanvasWrapper = /** @class */ (function (_super) {
     };
     CanvasWrapper.prototype.render = function () {
         var _a = this.props, config = _a.config, ComponentInner = _a.ComponentInner, ComponentOuter = _a.ComponentOuter, position = _a.position, scale = _a.scale, onDragCanvas = _a.onDragCanvas, children = _a.children, onCanvasClick = _a.onCanvasClick, onDeleteKey = _a.onDeleteKey, onCanvasDrop = _a.onCanvasDrop;
-        var _b = this.state, offsetX = _b.offsetX, offsetY = _b.offsetY;
+        var _b = this.state, offsetX = _b.offsetX, offsetY = _b.offsetY, width = _b.width, height = _b.height;
         return (React.createElement(CanvasContext_1.default.Provider, { value: { offsetX: this.state.offsetX, offsetY: this.state.offsetY } },
-            React.createElement("div", { style: { transform: "scale(" + scale + ")" } },
+            React.createElement(ScaleWrapper, { scale: scale, width: width, height: height },
                 React.createElement(ComponentOuter, { config: config, ref: this.ref },
                     React.createElement(react_draggable_1.default, { axis: "both", position: position, scale: scale, grid: [1, 1], onDrag: function (e, data) { return onDragCanvas({ config: config, event: e, data: data }); }, disabled: config.readonly },
                         React.createElement(ComponentInner, { config: config, children: children, onClick: onCanvasClick, tabIndex: 0, onKeyDown: function (e) {

@@ -29,6 +29,26 @@ interface IState {
   offsetY: number
 }
 
+interface IScaleWrapperProps {
+  scale: number
+  width: number
+  height: number
+  children: any
+}
+
+const ScaleWrapper = (props: IScaleWrapperProps) => {
+  const {scale = 1, width, height, children} = props
+
+  const x = (width - (width * scale)) * -1
+  const y = (height - (height * scale)) * -1
+
+  return (
+    <div style={{transform: `scale(${scale}) translate(${x}, ${y})`}}>
+      {children}
+    </div>
+  )
+}
+
 export class CanvasWrapper extends React.Component<ICanvasWrapperProps, IState> {
   public state = {
     width: 0,
@@ -78,10 +98,12 @@ export class CanvasWrapper extends React.Component<ICanvasWrapperProps, IState> 
     const {
       offsetX,
       offsetY,
+      width,
+      height
     } = this.state
     return (
       <CanvasContext.Provider value={{ offsetX: this.state.offsetX, offsetY: this.state.offsetY }}>
-        <div style={{transform: `scale(${scale})`}}>
+        <ScaleWrapper scale={scale} width={width} height={height}>
           <ComponentOuter config={config} ref={this.ref}>
             <Draggable
               axis="both"
@@ -115,7 +137,7 @@ export class CanvasWrapper extends React.Component<ICanvasWrapperProps, IState> 
               />
             </Draggable>
           </ComponentOuter>
-        </div>
+        </ScaleWrapper>
       </CanvasContext.Provider>
     )
   }
