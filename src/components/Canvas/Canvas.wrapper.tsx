@@ -29,20 +29,6 @@ interface IState {
   offsetY: number
 }
 
-interface IScaleWrapperProps {
-  scale: number
-  children: any
-}
-
-const ScaleWrapper = (props: IScaleWrapperProps) => {
-  const {scale = 1, children} = props
-  return (
-    <div style={{transform: `scale(${scale})`, transformOrigin: 'top left'}}>
-      {children}
-    </div>
-  )
-}
-
 export class CanvasWrapper extends React.Component<ICanvasWrapperProps, IState> {
   public state = {
     width: 0,
@@ -95,41 +81,39 @@ export class CanvasWrapper extends React.Component<ICanvasWrapperProps, IState> 
     } = this.state
     return (
       <CanvasContext.Provider value={{ offsetX: this.state.offsetX, offsetY: this.state.offsetY }}>
-        <ScaleWrapper scale={scale}>
-          <ComponentOuter config={config} ref={this.ref}>
-            <Draggable
-              axis="both"
-              position={position}
-              scale={scale}
-              grid={[1, 1]}
-              onDrag={(e, data) => onDragCanvas({ config, event: e, data })}
-              disabled={config.readonly}
-            >
-              <ComponentInner
-                config={config}
-                children={children}
-                onClick={onCanvasClick}
-                tabIndex={0}
-                onKeyDown={ (e: React.KeyboardEvent) => {
-                  // delete or backspace keys
-                  if (e.keyCode === 46 || e.keyCode === 8) {
-                    onDeleteKey({ config })
-                  }
-                }}
-                onDrop={ (e) => {
-                  const data = JSON.parse(e.dataTransfer.getData(REACT_FLOW_CHART))
-                  if (data) {
-                    onCanvasDrop({ data, position: {
-                      x: e.clientX - (position.x + offsetX),
-                      y: e.clientY - (position.y + offsetY),
-                    }})
-                  }
-                } }
-                onDragOver={(e) => e.preventDefault()}
-              />
-            </Draggable>
-          </ComponentOuter>
-        </ScaleWrapper>
+        <ComponentOuter config={config} ref={this.ref} scale={scale}>
+          <Draggable
+            axis="both"
+            position={position}
+            scale={scale}
+            grid={[1, 1]}
+            onDrag={(e, data) => onDragCanvas({ config, event: e, data })}
+            disabled={config.readonly}
+          >
+            <ComponentInner
+              config={config}
+              children={children}
+              onClick={onCanvasClick}
+              tabIndex={0}
+              onKeyDown={ (e: React.KeyboardEvent) => {
+                // delete or backspace keys
+                if (e.keyCode === 46 || e.keyCode === 8) {
+                  onDeleteKey({ config })
+                }
+              }}
+              onDrop={ (e) => {
+                const data = JSON.parse(e.dataTransfer.getData(REACT_FLOW_CHART))
+                if (data) {
+                  onCanvasDrop({ data, position: {
+                    x: e.clientX - (position.x + offsetX),
+                    y: e.clientY - (position.y + offsetY),
+                  }})
+                }
+              } }
+              onDragOver={(e) => e.preventDefault()}
+            />
+          </Draggable>
+        </ComponentOuter>
       </CanvasContext.Provider>
     )
   }

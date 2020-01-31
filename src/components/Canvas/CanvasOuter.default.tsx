@@ -1,10 +1,11 @@
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import { IConfig } from '../../types'
 
 export interface ICanvasOuterDefaultProps {
   config: IConfig
   children: any
   ref?: React.Ref<any>
+  scale?: number
 }
 
 export const CanvasOuterDefault = styled.div<ICanvasOuterDefaultProps>`
@@ -17,4 +18,8 @@ export const CanvasOuterDefault = styled.div<ICanvasOuterDefaultProps>`
   width: 100%;
   overflow: hidden;
   cursor: not-allowed;
+  transform-origin: top left;
+  ${props => props.scale && css`
+    transform: scale(${props.scale})
+  `}
 ` as any
