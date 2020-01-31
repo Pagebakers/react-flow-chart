@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {
-  CanvasInnerDefault, CanvasOuterDefault, CanvasWrapper, ICanvasInnerDefaultProps, ICanvasOuterDefaultProps, IChart, IConfig, ILink,
+  CanvasInnerDefault, CanvasOuterDefault, CanvasScaleDefault, CanvasWrapper, ICanvasInnerDefaultProps, ICanvasOuterDefaultProps, ICanvasScaleDefaultProps, IChart, IConfig, ILink,
   ILinkDefaultProps, INodeDefaultProps, INodeInnerDefaultProps, IOnCanvasClick, IOnCanvasDrop, IOnDeleteKey, IOnDragCanvas,
   IOnDragNode, IOnLinkCancel, IOnLinkClick, IOnLinkComplete, IOnLinkMouseEnter,
   IOnLinkMouseLeave, IOnLinkMove, IOnLinkStart, IOnNodeClick, IOnNodeSizeChange, IOnPortPositionChange, IPortDefaultProps,
@@ -29,6 +29,7 @@ export interface IFlowChartCallbacks {
 export interface IFlowChartComponents {
   CanvasOuter?: React.FunctionComponent<ICanvasOuterDefaultProps>
   CanvasInner?: React.FunctionComponent<ICanvasInnerDefaultProps>
+  CanvasScale?: React.FunctionComponent<ICanvasScaleDefaultProps>
   NodeInner?: React.FunctionComponent<INodeInnerDefaultProps>
   Ports?: React.FunctionComponent<IPortsDefaultProps>
   Port?: React.FunctionComponent<IPortDefaultProps>
@@ -82,6 +83,7 @@ export const FlowChart = (props: IFlowChartProps) => {
     Components: {
       CanvasOuter = CanvasOuterDefault,
       CanvasInner = CanvasInnerDefault,
+      CanvasScale = CanvasScaleDefault,
       NodeInner = NodeInnerDefault,
       Ports = PortsDefault,
       Port = PortDefault,
@@ -132,6 +134,7 @@ export const FlowChart = (props: IFlowChartProps) => {
       scale={chart.scale}
       ComponentInner={CanvasInner}
       ComponentOuter={CanvasOuter}
+      ComponentScale={CanvasScale}
       onSizeChange={(width, height) => setCanvasSize({ width, height })}
       {...canvasCallbacks}
     >

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { IConfig, IOnCanvasClick, IOnCanvasDrop, IOnDeleteKey, IOnDragCanvas } from '../../';
 import { ICanvasInnerDefaultProps } from './CanvasInner.default';
 import { ICanvasOuterDefaultProps } from './CanvasOuter.default';
+import { ICanvasScaleDefaultProps } from './CanvasScale.default';
 export interface ICanvasWrapperProps {
     config: IConfig;
     position: {
@@ -15,6 +16,7 @@ export interface ICanvasWrapperProps {
     onCanvasDrop: IOnCanvasDrop;
     ComponentInner: React.FunctionComponent<ICanvasInnerDefaultProps>;
     ComponentOuter: React.FunctionComponent<ICanvasOuterDefaultProps>;
+    ComponentScale: React.FunctionComponent<ICanvasScaleDefaultProps>;
     onSizeChange: (x: number, y: number) => void;
     children: any;
 }

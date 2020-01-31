@@ -4,6 +4,5 @@ export interface ICanvasOuterDefaultProps {
     config: IConfig;
     children: any;
     ref?: React.Ref<any>;
-    scale?: number;
 }
 export declare const CanvasOuterDefault: any;

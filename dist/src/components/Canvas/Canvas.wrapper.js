@@ -64,25 +64,26 @@ var CanvasWrapper = /** @class */ (function (_super) {
         window.removeEventListener('scroll', this.updateSize);
     };
     CanvasWrapper.prototype.render = function () {
-        var _a = this.props, config = _a.config, ComponentInner = _a.ComponentInner, ComponentOuter = _a.ComponentOuter, position = _a.position, scale = _a.scale, onDragCanvas = _a.onDragCanvas, children = _a.children, onCanvasClick = _a.onCanvasClick, onDeleteKey = _a.onDeleteKey, onCanvasDrop = _a.onCanvasDrop;
+        var _a = this.props, config = _a.config, ComponentInner = _a.ComponentInner, ComponentOuter = _a.ComponentOuter, ComponentScale = _a.ComponentScale, position = _a.position, scale = _a.scale, onDragCanvas = _a.onDragCanvas, children = _a.children, onCanvasClick = _a.onCanvasClick, onDeleteKey = _a.onDeleteKey, onCanvasDrop = _a.onCanvasDrop;
         var _b = this.state, offsetX = _b.offsetX, offsetY = _b.offsetY;
         return (React.createElement(CanvasContext_1.default.Provider, { value: { offsetX: this.state.offsetX, offsetY: this.state.offsetY } },
-            React.createElement(ComponentOuter, { config: config, ref: this.ref, scale: scale },
-                React.createElement(react_draggable_1.default, { axis: "both", position: position, scale: scale, grid: [1, 1], onDrag: function (e, data) { return onDragCanvas({ config: config, event: e, data: data }); }, disabled: config.readonly },
-                    React.createElement(ComponentInner, { config: config, children: children, onClick: onCanvasClick, tabIndex: 0, onKeyDown: function (e) {
-                            // delete or backspace keys
-                            if (e.keyCode === 46 || e.keyCode === 8) {
-                                onDeleteKey({ config: config });
-                            }
-                        }, onDrop: function (e) {
-                            var data = JSON.parse(e.dataTransfer.getData(__1.REACT_FLOW_CHART));
-                            if (data) {
-                                onCanvasDrop({ data: data, position: {
-                                        x: e.clientX - (position.x + offsetX),
-                                        y: e.clientY - (position.y + offsetY),
-                                    } });
-                            }
-                        }, onDragOver: function (e) { return e.preventDefault(); } })))));
+            React.createElement(ComponentOuter, { config: config, ref: this.ref },
+                React.createElement(ComponentScale, { scale: scale },
+                    React.createElement(react_draggable_1.default, { axis: "both", position: position, scale: scale, grid: [1, 1], onDrag: function (e, data) { return onDragCanvas({ config: config, event: e, data: data }); }, disabled: config.readonly },
+                        React.createElement(ComponentInner, { config: config, children: children, onClick: onCanvasClick, tabIndex: 0, onKeyDown: function (e) {
+                                // delete or backspace keys
+                                if (e.keyCode === 46 || e.keyCode === 8) {
+                                    onDeleteKey({ config: config });
+                                }
+                            }, onDrop: function (e) {
+                                var data = JSON.parse(e.dataTransfer.getData(__1.REACT_FLOW_CHART));
+                                if (data) {
+                                    onCanvasDrop({ data: data, position: {
+                                            x: e.clientX - (position.x + offsetX),
+                                            y: e.clientY - (position.y + offsetY),
+                                        } });
+                                }
+                            }, onDragOver: function (e) { return e.preventDefault(); } }))))));
     };
     return CanvasWrapper;
 }(React.Component));

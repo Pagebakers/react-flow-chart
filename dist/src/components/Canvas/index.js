@@ -5,5 +5,6 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./CanvasInner.default"));
 __export(require("./CanvasOuter.default"));
+__export(require("./CanvasScale.default"));
 __export(require("./Canvas.wrapper"));
 //# sourceMappingURL=index.js.map
