@@ -74,8 +74,8 @@ export class PortWrapper extends React.Component<IPortWrapperProps> {
         config,
         linkId, startEvent, fromNodeId, fromPortId,
         toPosition: {
-          x: (e.clientX - offsetX - offset.x) / scale,
-          y: (e.clientY - offsetY - offset.y) / scale,
+          x: (e.clientX - offsetX - (offset.x * scale)) / scale,
+          y: (e.clientY - offsetY - (offset.y * scale)) / scale,
         },
       })
     }

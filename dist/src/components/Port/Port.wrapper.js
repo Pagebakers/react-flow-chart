@@ -47,8 +47,8 @@ var PortWrapper = /** @class */ (function (_super) {
                     config: config,
                     linkId: linkId, startEvent: startEvent, fromNodeId: fromNodeId, fromPortId: fromPortId,
                     toPosition: {
-                        x: (e.clientX - offsetX - offset.x) / scale,
-                        y: (e.clientY - offsetY - offset.y) / scale,
+                        x: (e.clientX - offsetX - (offset.x * scale)) / scale,
+                        y: (e.clientY - offsetY - (offset.y * scale)) / scale,
                     },
                 });
             };
