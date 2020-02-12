@@ -63,6 +63,8 @@ export class PortWrapper extends React.Component<IPortWrapperProps> {
     const fromNodeId = node.id
     const fromPortId = port.id
 
+    const scale = config.scale || 1
+
     // Create the move handler
     // This will update the position as the mouse moves
     const mouseMoveHandler = (e: MouseEvent) => {
@@ -72,8 +74,8 @@ export class PortWrapper extends React.Component<IPortWrapperProps> {
         config,
         linkId, startEvent, fromNodeId, fromPortId,
         toPosition: {
-          x: e.clientX - offsetX - offset.x,
-          y: e.clientY - offsetY - offset.y,
+          x: (e.clientX - offsetX - offset.x) / scale,
+          y: (e.clientY - offsetY - offset.y) / scale,
         },
       })
     }

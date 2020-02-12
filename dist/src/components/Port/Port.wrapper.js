@@ -38,6 +38,7 @@ var PortWrapper = /** @class */ (function (_super) {
             var linkId = uuid_1.v4();
             var fromNodeId = node.id;
             var fromPortId = port.id;
+            var scale = config.scale || 1;
             // Create the move handler
             // This will update the position as the mouse moves
             var mouseMoveHandler = function (e) {
@@ -46,8 +47,8 @@ var PortWrapper = /** @class */ (function (_super) {
                     config: config,
                     linkId: linkId, startEvent: startEvent, fromNodeId: fromNodeId, fromPortId: fromPortId,
                     toPosition: {
-                        x: e.clientX - offsetX - offset.x,
-                        y: e.clientY - offsetY - offset.y,
+                        x: (e.clientX - offsetX - offset.x) / scale,
+                        y: (e.clientY - offsetY - offset.y) / scale,
                     },
                 });
             };
