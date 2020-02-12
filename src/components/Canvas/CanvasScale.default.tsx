@@ -12,6 +12,8 @@ export const CanvasScaleDefault = styled.div<ICanvasScaleDefaultProps>`
   background-image:
     linear-gradient(90deg,hsla(0,0%,100%,.2) 1px,transparent 0),
     linear-gradient(180deg,hsla(0,0%,100%,.2) 1px,transparent 0);
+  width: 10000px;
+  height: 10000px;
   transform-origin: top left;
   ${props => props.scale && css`
     transform: scale(${props.scale})

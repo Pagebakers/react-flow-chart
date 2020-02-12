@@ -136,6 +136,7 @@ export const NodeWrapper = ({
       axis="both"
       position={node.position}
       grid={[1,1]}
+      scale={config.scale}
       onStart={onStart}
       onDrag={onDrag}
       disabled={config.readonly}

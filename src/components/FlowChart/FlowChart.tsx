@@ -131,7 +131,6 @@ export const FlowChart = (props: IFlowChartProps) => {
     <CanvasWrapper
       config={config}
       position={chart.offset}
-      scale={chart.scale}
       ComponentInner={CanvasInner}
       ComponentOuter={CanvasOuter}
       ComponentScale={CanvasScale}

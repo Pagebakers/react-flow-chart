@@ -41,7 +41,7 @@ exports.FlowChart = function (props) {
             nodesInView.indexOf(from.nodeId) !== -1 ||
             nodesInView.indexOf(to.nodeId) !== -1);
     });
-    return (React.createElement(__1.CanvasWrapper, __assign({ config: config, position: chart.offset, scale: chart.scale, ComponentInner: CanvasInner, ComponentOuter: CanvasOuter, ComponentScale: CanvasScale, onSizeChange: function (width, height) { return setCanvasSize({ width: width, height: height }); } }, canvasCallbacks),
+    return (React.createElement(__1.CanvasWrapper, __assign({ config: config, position: chart.offset, ComponentInner: CanvasInner, ComponentOuter: CanvasOuter, ComponentScale: CanvasScale, onSizeChange: function (width, height) { return setCanvasSize({ width: width, height: height }); } }, canvasCallbacks),
         linksInView.map(function (linkId) {
             var isSelected = !config.readonly && selected.type === 'link' && selected.id === linkId;
             var isHovered = !config.readonly && hovered.type === 'link' && hovered.id === linkId;

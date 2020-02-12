@@ -48,7 +48,7 @@ exports.NodeWrapper = function (_a) {
             } }),
         React.createElement(NodeInner, { node: node, config: config }),
         React.createElement(Ports, { config: config }, Object.keys(node.ports).map(function (portId) { return (React.createElement(__1.PortWrapper, { config: config, key: portId, offset: offset, selected: selected, selectedLink: selectedLink, hoveredLink: hoveredLink, hovered: hovered, node: node, port: node.ports[portId], Component: Port, onPortPositionChange: onPortPositionChange, onLinkStart: config.readonly ? utils_1.noop : onLinkStart, onLinkMove: config.readonly ? utils_1.noop : onLinkMove, onLinkComplete: onLinkComplete, onLinkCancel: onLinkCancel })); }))));
-    return (React.createElement(react_draggable_1.default, { bounds: "parent", axis: "both", position: node.position, grid: [1, 1], onStart: onStart, onDrag: onDrag, disabled: config.readonly },
+    return (React.createElement(react_draggable_1.default, { bounds: "parent", axis: "both", position: node.position, grid: [1, 1], scale: config.scale, onStart: onStart, onDrag: onDrag, disabled: config.readonly },
         React.createElement(Component, { config: config, ref: compRef, children: children, onClick: onClick, isSelected: isSelected, node: node })));
 };
 //# sourceMappingURL=Node.wrapper.js.map

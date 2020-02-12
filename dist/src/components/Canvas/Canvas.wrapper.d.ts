@@ -9,7 +9,6 @@ export interface ICanvasWrapperProps {
         x: number;
         y: number;
     };
-    scale: number;
     onDragCanvas: IOnDragCanvas;
     onDeleteKey: IOnDeleteKey;
     onCanvasClick: IOnCanvasClick;
